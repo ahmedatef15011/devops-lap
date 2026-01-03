@@ -11,5 +11,5 @@ COPY app.py .
 
 EXPOSE 8000
 
-# Run the API
-CMD ["python3", "-m", "uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
+# Run the API (uvicorn directly is slightly faster)
+CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]

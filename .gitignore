@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+ENV/
+env/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# macOS
+.DS_Store
+
+# Terraform (for later)
+*.tfstate
+*.tfstate.*
+.terraform/
+
+# Docker
+.docker/
+
+# Environment
+.env
+.env.local
