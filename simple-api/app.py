@@ -74,3 +74,11 @@ def get_stats():
         }
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+@app.delete("/reset")
+def reset_visits():
+    if not client:
+        raise HTTPException(status_code=503, details="Database not available")
+
+    result = visits_collection.delete_many({})
+    return {"deleted_count": result.deleted_count}

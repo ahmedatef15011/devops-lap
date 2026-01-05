@@ -124,7 +124,76 @@ less file                     # Page through content
 
 ---
 
-## Week 3: [Next Topic]
+## Week 3: Docker Compose - Multi-Container Applications
+
+### Concepts Learned
+- **Docker Compose**: Tool to define and run multi-container applications
+- **Services**: Each container in compose is a "service"
+- **Networking**: Containers communicate using service names as hostnames
+- **Volumes**: Named volumes persist data across container restarts
+- **Environment Variables**: Configure containers without changing code
+- **Health Checks**: Monitor container health status
+- **Dependencies**: Control startup order with `depends_on`
+
+### Commands Mastered
+```bash
+# Basic Operations
+docker compose up                # Start all services
+docker compose up -d             # Start in background (detached)
+docker compose up --build        # Rebuild images before starting
+docker compose down              # Stop and remove containers
+docker compose down -v           # Stop and remove volumes (deletes data!)
+
+# Monitoring & Debugging
+docker compose ps                # List running services
+docker compose logs              # View all logs
+docker compose logs -f           # Follow logs in real-time
+docker compose logs api          # Logs for specific service
+docker compose stats             # Resource usage
+
+# Service Management
+docker compose restart api       # Restart one service
+docker compose stop mongodb      # Stop one service
+docker compose exec api sh       # Get shell in container
+docker compose build             # Rebuild images
+
+# Volumes
+docker volume ls                 # List volumes
+docker volume inspect vol_name   # Inspect volume details
+docker volume rm vol_name        # Remove volume
+```
+
+### Stack Built
+```
+FastAPI (port 8000) → MongoDB (port 27017) ← Mongo Express (port 8081)
+   |                        |                        |
+   └─ Tracks visits    └─ Stores data       └─ Web UI to browse DB
+```
+
+### Files Created/Modified
+- `docker-compose.yaml` - Multi-container orchestration
+- `app.py` - Added MongoDB integration (pymongo)
+- `requirements.txt` - Added pymongo dependency
+- `Dockerfile` - Added curl for health checks
+
+### Key Insights
+- Service names become hostnames in Docker network
+  - Use `mongodb://mongodb:27017` NOT `localhost:27017`
+- Volumes preserve data when containers are recreated
+- Health checks show container status beyond just "running"
+- `depends_on` only controls start order, not readiness
+- Named volumes are better than bind mounts for databases
+- Environment variables make configs flexible
+
+### Real-World Application
+- **Development**: Run entire stack locally (no cloud setup needed)
+- **Testing**: Consistent environment for all developers
+- **CI/CD**: Same compose file for automated tests
+- **Staging**: Deploy stack to test servers
+
+---
+
+## Week 4: [Next Topic]
 
 _To be added..._
 
